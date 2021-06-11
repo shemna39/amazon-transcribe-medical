@@ -1,0 +1,396 @@
+\chapter{System Design}
+\section{Introduction}
+The most creative and challenging face of the system development is System Design. It provides the understanding and procedural details necessary for the logical and physical stages of development. In designing a new system, the system analyst must have a clear understanding of the objectives, which the design is aiming to fulfill. The first step is to determine how the output is to be produced and in what format. Second, input data and master files have to be designed to meet the requirements[6].
+\section{Database Design}
+A properly designed database provides you with access to up-to-date, accurate
+information. Because a correct design is essential to achieving your goals in working
+with a database, investing the time required to learn the principles of good design makes
+sense. In the end, you are much more likely to end up with a database that meets your
+needs and can easily accommodate change.
+\newpage
+\subsection{Tables}
+
+\begin{table}[!htb]
+\centering
+  \caption{Doctor Table}
+    \label{tab:table1}
+\renewcommand{\arraystretch}{1.5}% for the vertical padding
+\begin{tabular}{|p{4cm}|p{2cm}|p{3cm}|p{4cm}|}
+\hline \textbf{FIELD NAME} & \textbf{DATA TYPE} & \textbf{CONSTRAINTS} & \textbf{DESCRIPTION} \\
+\hline
+id	 & Integer &	Primary Key &	Id of doctor \\
+\hline
+username & Varchar & Not Null & Name of doctor\\
+\hline
+password & Varchar & Not Null & Password of doctor\\
+\hline
+email & Varchar & Not Null & Email of the doctor\\
+\hline
+join\_date & Timestamp & Not Null & Join date of doctor \\
+\hline
+address & Varchar & Not Null & Address of the doctor\\
+\hline
+hospital/management name & Varchar & Not Null & Name of the hospital\\
+\hline
+doctor verfid & Varchar & Not Null & Doctor verification id\\
+\hline
+\end{tabular}
+  \end{table}
+ \par
+ 
+ \begin{table}[!htb]
+\centering
+  \caption{Medtrans Table}
+    \label{tab:table1}
+\renewcommand{\arraystretch}{1.5}% for the vertical padding
+\begin{tabular}{|p{4cm}|p{2cm}|p{3cm}|p{4cm}|}
+\hline \textbf{FIELD NAME} & \textbf{DATA TYPE} & \textbf{CONSTRAINTS} & \textbf{DESCRIPTION} \\
+\hline
+medtrans\_id	 & Integer &	Primary Key &	Id of medical transcriptionist \\
+\hline
+org\_name & Varchar & Not Null & Name of organization\\
+\hline
+created\_by & Tinyint & Not Null & Person who created\\
+\hline
+updated\_by & Tinyint & Not Null & person who updated\\
+\hline
+created\_at & Timestamp & Not Null & Created time\\
+\hline
+updated\_at & Timestamp & Not Null & Updated time\\
+\hline
+\end{tabular}
+  \end{table}
+ 
+ 
+ \par
+ \begin{table}[!htb]
+\centering
+  \caption{Login Table}
+    \label{tab:table1}
+\renewcommand{\arraystretch}{1.5}% for the vertical padding
+\begin{tabular}{|p{4cm}|p{2cm}|p{3cm}|p{4cm}|}
+\hline \textbf{FIELD NAME} & \textbf{DATA TYPE} & \textbf{CONSTRAINTS} & \textbf{DESCRIPTION} \\
+\hline
+id	 & Integer &	Primary Key &	Login Id \\
+\hline
+username & Varchar & Not Null & Username\\
+\hline
+password & Varchar & Not Null & password\\
+\hline
+type & Varchar & Not Null & Type of user\\
+\hline
+
+
+\end{tabular}
+  \end{table}
+  \par
+  
+  \begin{table}[!htb]
+\centering
+  \caption{Data Table}
+    \label{tab:table1}
+\renewcommand{\arraystretch}{1.5}% for the vertical padding
+\begin{tabular}{|p{4cm}|p{2cm}|p{3cm}|p{4cm}|}
+\hline \textbf{FIELD NAME} & \textbf{DATA TYPE} & \textbf{CONSTRAINTS} & \textbf{DESCRIPTION} \\
+\hline
+id	 & Integer &	Primary Key &	Id of data \\
+\hline
+patient\_name & Varchar & Not Null & Name of the patient\\
+\hline
+case\_number & Varchar & Not Null & Case number of patient\\
+\hline
+date & Date & Not Null & Date\\
+\hline
+Doctor\_name & Varchar & Not Null & Name of doctor\\
+\hline
+audio\_file\_language & Text & Not Null & Language of audio file\\
+\hline
+rec\_duration & Varchar & Not Null & Record duration\\
+\hline
+speech\_type & Varchar &Not Null & Type of speech\\
+\hline
+active\_status & Tinyint & Not Null & Active time\\
+\hline
+created\_at & Timestamp & Not Null & Created time\\
+\hline
+updated\_at & Timestamp & Not Null & Updated time\\
+\hline
+Created\_by & Integer & Not Null & Created person\\
+\hline
+Updated\_by &Integer&Not Null & Updated person\\
+\hline
+medtrans\_id &Integer & Foreign Key & Id of medical transcriptionist\\
+\hline
+
+\end{tabular}
+  \end{table}
+  \par
+  
+   \newpage
+  \begin{table}[!htb]
+\centering
+  \caption{Role Table}
+    \label{tab:table1}
+\renewcommand{\arraystretch}{1.5}% for the vertical padding
+\begin{tabular}{|p{4cm}|p{2cm}|p{3cm}|p{4cm}|}
+\hline \textbf{FIELD NAME} & \textbf{DATA TYPE} & \textbf{CONSTRAINTS} & \textbf{DESCRIPTION} \\
+\hline
+id	 & Integer &	Primary Key &	Id of role \\
+\hline
+name & Varchar &Not Null & Name of the staff/doctor\\
+\hline
+type & Varchar & Not Null & Type of user\\
+\hline
+active\_status & Tinyint & Not Null & Active time\\
+\hline
+created\_by & Varchar&Not Null & Created person\\
+\hline
+updated\_by & Varchar& Not Null &Updated person\\
+\hline
+created\_at &Timestamp&Not Null &Created time\\
+\hline
+updated\_at & Timestamp &Not Null & Updated time\\
+\hline
+medtrans\_id &Integer &Foreign Key & id of medical transcriptionist\\
+\hline
+
+\end{tabular}
+  \end{table}
+  \par
+ 
+  \begin{table}[!htb]
+\centering
+  \caption{upload Table}
+    \label{tab:table1}
+\renewcommand{\arraystretch}{1.5}% for the vertical padding
+\begin{tabular}{|p{4cm}|p{2cm}|p{3cm}|p{4cm}|}
+\hline \textbf{FIELD NAME} & \textbf{DATA TYPE} & \textbf{CONSTRAINTS} & \textbf{DESCRIPTION} \\
+\hline
+id	 & Integer &	Primary Key &	Id of upload table \\
+\hline
+file name& Text& Not Null &Name of file\\ 
+\hline
+file\_id & Text & Not Null & id of file\\
+\hline
+service\_type & Varchar&Not Null & Type of service\\
+\hline
+description & Medium Text & Not Null& Description of fle\\
+\hline
+file size & Double & Not Null & Size of file\\
+\hline
+client\_id & Integer & Not Null & Id of client\\
+\hline
+user\_id & Integer & Not Null & Id of user\\
+\hline
+updated\_by & Tinyint & Not Null & person who updated\\
+\hline
+created\_at & Timestamp & Not Null & Created time\\
+\hline
+deleted &Tinyint &Not Null & Deleted file\\
+\hline
+\end{tabular}
+  \end{table}
+  \par
+  \begin{table}[!htb]
+\centering
+  \caption{user Table}
+    \label{tab:table1}
+\renewcommand{\arraystretch}{1.5}% for the vertical padding
+\begin{tabular}{|p{4cm}|p{2cm}|p{3cm}|p{4cm}|}
+\hline \textbf{FIELD NAME} & \textbf{DATA TYPE} & \textbf{CONSTRAINTS} & \textbf{DESCRIPTION} \\
+\hline
+id	 & Integer &	Primary Key &	Id of user \\
+\hline
+full\_name & Varchar& Not NUll & Full name of user\\
+\hline
+username & Varchar & Not Null & Username of user\\
+\hline
+email & Varchar &Not Null & Email of user\\
+\hline
+password &Varchar& Not Null & Password of user\\
+\hline
+usertype & Varchar& Not Null & Type of user\\
+\hline
+access\_status & Tinyint & Not Null & Access status\\
+\hline
+active\_status & Tinyint & Not Null & Active Time\\
+\hline
+random\_code & Text &Not Null & Code \\
+\hline
+notification\_token & Text &Not Null & Token of notification\\
+\hline
+remember\_token & Text & Not Null & Token of remember\\
+\hline
+creantted_by & TTinyIinyint & Not Null & Person who created\\
+\hline
+updated\_by & Tinyint & Not Null & person who updated\\
+\hline
+created\_at & Timestamp & Not Null & Created time\\
+\hline
+updated\_at & Timestamp & Not Null & Updated time\\
+\hline
+medtrans\_id&Integer &Foreign key & Id of medical transcriptionist\\
+\hline
+role\_id & Integer & Foreign Key & Id of role\\
+\hline
+\end{tabular}
+  \end{table}
+  
+  \par
+  \begin{table}[!htb]
+\centering
+  \caption{Patient Table}
+    \label{tab:table1}
+\renewcommand{\arraystretch}{1.5}% for the vertical padding
+\begin{tabular}{|p{4cm}|p{2cm}|p{3cm}|p{4cm}|}
+\hline \textbf{FIELD NAME} & \textbf{DATA TYPE} & \textbf{CONSTRAINTS} & \textbf{DESCRIPTION} \\
+\hline
+patient\_id	 & Integer &	Primary Key &	Id of patient \\
+\hline
+patient\_name & Varchar & Not Null & Name of patient\\
+\hline
+password & Varchar & Not Null & Password of patient\\
+\hline
+gender & Varchar & Not Null & Gender of the patient\\
+\hline
+mobile\_number & Varchar & Not Null & Mobile number of patient \\
+\hline
+day & Integer & Not Null & Day of admission\\
+\hline
+month & Integer & Not Null & Month of admission \\
+\hline
+year & Integer & Not Null & Year of admission \\
+\hline
+street\_address & Varchar & Not Null & Street address of patient\\
+\hline
+city & Varchar& Not Null & City Name\\
+\hline
+zipcode & Integer & Not Null & Zipcode of the street\\
+\hline
+country & Varchar& Not Null & Country name of patient \\
+\hline
+email & Varchar & Not Null & Email of the patient\\
+\hline
+test1 & Varchar & Not Null & test1 details of patient\\
+\hline
+test2 & Varchar & Not Null & test2 details of patient\\
+\hline
+
+\end{tabular}
+  \end{table}
+  \par
+  
+\clearpage
+\section{User-Interface Design}
+\subsection{Screenshots}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/doctor.PNG}
+    \caption{Doctor Registration page}
+    \label{fig:my_label1}
+    \end{figure}
+    
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/user.PNG}
+    \caption{User Registration page}
+    \label{fig:my_label1}
+    \end{figure}
+     
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/patient_reg1.png}
+    \caption{Patient Registration page}
+    \label{fig:my_label1}
+    \end{figure}
+     
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/patient_reg2.png}
+    \caption{Patient Registration page cont..}
+    \label{fig:my_label1}
+    \end{figure}
+     
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/login.png}
+    \caption{Login page}
+    \label{fig:my_label1}
+    \end{figure}
+    
+    
+     \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/dashboard.png}
+    \caption{Dashboard}
+    \label{fig:my_label1}
+    \end{figure}
+    
+     \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/launch.PNG}
+    \caption{Audio file home page}
+    \label{fig:my_label1}
+    \end{figure}
+    
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/home3.PNG}
+    \caption{Audio file transcribe page}
+    \label{fig:my_label1}
+    \end{figure}
+     \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/transcribe home 2.PNG}
+    \caption{Audio file transcribe page cont..}
+    \label{fig:my_label1}
+    \end{figure}
+    
+     \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/home5.PNG}
+    \caption{Record file transcribe page}
+    \label{fig:my_label1}
+    \end{figure}
+    
+     \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/transcribe home 2.PNG}
+    \caption{Record file transcribe page cont..}
+    \label{fig:my_label1}
+    \end{figure}
+    
+     \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/audio_file data.png}
+    \caption{Audio file upload page}
+    \label{fig:my_label1}
+    \end{figure}
+    
+      \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/transcribe result.PNG}
+    \caption{Transcribe Result page}
+    \label{fig:my_label1}
+    \end{figure}
+    
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/raw_text_result.PNG}
+    \caption{Raw Text Result page}
+    \label{fig:my_label1}
+    \end{figure}
+    
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/profile settig.jpg}
+    \caption{Profile setting page}
+    \label{fig:my_label1}
+    \end{figure}
+    
+    \begin{figure}[ht]
+    \centering
+    \includegraphics[width=450, height=400]{Project_report_Latex files/Thesis-Final/change pswd.jpg}
+    \caption{Password change page}
+    \label{fig:my_label1}
+    \end{figure}
