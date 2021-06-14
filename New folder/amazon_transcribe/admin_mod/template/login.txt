@@ -1,0 +1,11 @@
+def loginas(request)
+    if request.method == 'POST'
+        user_name = request.POST['user_name']
+        password = request.POST['password']
+
+        u = login.objects.filter(Q(user_name=user_name) & Q(password=password))
+        if u.count()  0
+            request.session['id'] = u[0].user_id
+            if u[0].user_type == 0
+                return redirect('http127.0.0.18000')
+    return render(request, 'homehome.html')
